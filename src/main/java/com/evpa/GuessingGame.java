@@ -3,31 +3,29 @@ package com.evpa;
 import java.util.Scanner;
 
 public class GuessingGame {
+
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         int computerNumber = (int) (Math.random()*100 + 1);
         System.out.println("A random number has been generated...");
-        Scanner scanner = new Scanner(System.in);
+
 
         // Guess 1
-        System.out.println("Enter a guess between 1 and 100");
-        int userAnswer = scanner.nextInt();
+        int userAnswer = -1;
 
-        guess(userAnswer,computerNumber);
-
-        // Guess 2
-        System.out.println("Enter a guess between 1 and 100");
-        userAnswer = scanner.nextInt();
-
-        guess(userAnswer,computerNumber);
-
-        // Guess 3
-        System.out.println("Enter a guess between 1 and 100");
-        userAnswer = scanner.nextInt();
-
-        guess(userAnswer,computerNumber);
+        for (int i = 0; i < 3; i++) {
+            userAnswer = getUserInput();
+            guess(userAnswer,computerNumber);
+        }
 
         System.out.println("Sorry for your luck, restart the program to play again!");
+    }
+
+    public static int getUserInput() {
+        System.out.println("Enter a guess between 1 and 100");
+        return scanner.nextInt();
     }
 
     public static void guess(int userAnswer, int computerNumber) {
